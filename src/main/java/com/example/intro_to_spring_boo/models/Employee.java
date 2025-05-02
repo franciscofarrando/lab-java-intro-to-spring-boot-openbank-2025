@@ -7,15 +7,17 @@ import jakarta.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer employeeId;
+    private int employeeId;
     private String department;
     private String name;
-    private String status;
+    @Enumerated(EnumType.STRING)
+
+    private Status status;
 
     public Employee() {
     }
 
-    public Employee(String department, String name, String status) {
+    public Employee(String department, String name, Status status) {
         this.department = department;
         this.name = name;
         this.status = status;
@@ -45,11 +47,11 @@ public class Employee {
         this.name = name;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -59,7 +61,7 @@ public class Employee {
                 "employeeId=" + employeeId +
                 ", department='" + department + '\'' +
                 ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

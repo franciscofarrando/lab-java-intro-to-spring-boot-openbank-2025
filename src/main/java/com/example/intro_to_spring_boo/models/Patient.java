@@ -11,12 +11,14 @@ public class Patient {
         private Integer patientId;
         private String name;
         private String dateOfBirth;
-        private int admittedBy;
+        @ManyToOne
+        @JoinColumn(name = "admitted_by", referencedColumnName = "employeeId")
+        private Employee admittedBy;
 
     public Patient() {
     }
 
-    public Patient(String name, String dateOfBirth, int admittedBy) {
+    public Patient(String name, String dateOfBirth, Employee admittedBy) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.admittedBy = admittedBy;
@@ -46,11 +48,11 @@ public class Patient {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getAdmittedBy() {
+    public Employee getAdmittedBy() {
         return admittedBy;
     }
 
-    public void setAdmittedBy(int admittedBy) {
+    public void setAdmittedBy(Employee admittedBy) {
         this.admittedBy = admittedBy;
     }
 
